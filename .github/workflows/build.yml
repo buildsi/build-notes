@@ -19,7 +19,7 @@ jobs:
         rm -rf _site/*
         docker run --rm \
             -v "$PWD:/srv/jekyll" -v "$PWD/_site:/srv/jekyll/_site" \
-               jekyll/builder:4.0 /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future && chmod -R 777 /srv/jekyll"
+               jekyll/builder /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future && chmod -R 777 /srv/jekyll"
 
     - name: Deploy
       if: github.ref == 'refs/heads/main'
