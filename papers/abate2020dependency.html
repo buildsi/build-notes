@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Abate2020dependency | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Abate2020dependency" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Dependency Solving Is Still Hard,but We Are Getting Better at It" />
+<meta property="og:description" content="Dependency Solving Is Still Hard,but We Are Getting Better at It" />
+<link rel="canonical" href="/build-notes/papers/abate2020dependency" />
+<meta property="og:url" content="/build-notes/papers/abate2020dependency" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Abate2020dependency" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"Dependency Solving Is Still Hard,but We Are Getting Better at It","headline":"Abate2020dependency","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/papers/abate2020dependency"},"url":"/build-notes/papers/abate2020dependency"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#dependency-solving-is-still-hardbut-we-are-getting-better-at-it">Dependency Solving Is Still Hard,but We Are Getting Better at It</a>
+    <ol>
+      <li><a href="#tldr">TLDR</a></li>
+      <li><a href="#overview">Overview</a>
+        <ol>
+          <li><a href="#what-is-a-package-manager-responsible-for">What is a package manager responsible for?</a></li>
+          <li><a href="#how-do-we-evaluate-dependency-solvers">How do we evaluate dependency solvers?</a>
+            <ol>
+              <li><a href="#expressivity">Expressivity</a></li>
+              <li><a href="#complete">Complete</a></li>
+            </ol>
+          </li>
+          <li><a href="#how-can-we-summarize-current-solvers">How can we summarize current solvers?</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Abate2020dependency</h3>
+      <span>
+        Updated on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+         <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_papers/abate2020dependency.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <h2 id="dependency-solving-is-still-hardbut-we-are-getting-better-at-it">Dependency Solving Is Still Hard,but We Are Getting Better at It</h2>
+
+<h3 id="tldr">TLDR</h3>
+
+<p>The main theme of the paper is to (in the author’s words):</p>
+
+<blockquote>
+  <p>treat dependency solving as a separate concern in package manager design and implementation, delegating it to a specialized, highly-capable dependency solver based on  state-of-the-art constraint solving and opti-mization techniques</p>
+</blockquote>
+
+<p>Basically, dependency solving is (still) a hard (NP-complete) problem, and the authors take
+issue that solver implementations should not have random, ad-hoc heuristics, and instead should use “tried and tested” techniques that can be plugged in to any package manager like plugins. This paper
+thus reviews several of these solving techniques (SAT-solving, PBO, and MILP).
+They think SAT solvers have the most promise.</p>
+
+<h3 id="overview">Overview</h3>
+
+<h4 id="what-is-a-package-manager-responsible-for">What is a package manager responsible for?</h4>
+
+<p>This paper nicely describes the duties of a package manager:</p>
+
+<ol>
+  <li>Take as input:
+    <ul>
+      <li>the current status of packages on the system</li>
+      <li>a universe of all available packages (in other papers called <code class="language-plaintext highlighter-rouge">U</code>)</li>
+      <li>a user request (e.g., “install xyz, remove xyz”)</li>
+      <li>user preferences (e.g., “minimize updated software”)</li>
+    </ul>
+  </li>
+  <li>Return as output:
+    <ul>
+      <li>an upgrade plan: a list of actions to take on the system to reach the status that the user wants (e.g., installing thething)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>The user has expectations that, even without specifying preferences, they will
+get the minimal set of packages needed to run the software that they want (imagine
+trying to install something, it reports success, but then getting an error that a dependencyis missing!)</p>
+
+<p>See the <a href="/build-notes/notes/flow#package-managers">package managers</a> section for how this fits into the overall flow. This paper also has a nice table of CUDF-friendly solvers from MISC 2010-11</p>
+
+<p><img src="/build-notes/assets/img/notes/table-1-cudf-solvers-abate-2020.png" alt="/build-notes/assets/img/notes/table-1-cudf-solvers-abate-2020.png" /></p>
+
+<p>This is an interesting approach if you make a standard - create a competition so others
+use it!</p>
+
+<h4 id="how-do-we-evaluate-dependency-solvers">How do we evaluate dependency solvers?</h4>
+
+<h5 id="expressivity">Expressivity</h5>
+
+<p>A good dependency solver is expressive in its metadata (e.g., allowing me to specify dependencies, conflicts, names, versions) and in it’s client (e.g., I as a user can ask to optimize what I want in my upgrade plan, or maybe even my own criteria)! For BUILD, I’m wondering if we would be extracting binary metadata at runtime, or if it would be done in advance for some set of software (e.g., spack) and then we use it.</p>
+
+<h5 id="complete">Complete</h5>
+
+<p>If there is a solution, the dependency solver finds it.</p>
+
+<h4 id="how-can-we-summarize-current-solvers">How can we summarize current solvers?</h4>
+
+<p>The authors came up with a list of criteria:</p>
+
+<ul>
+  <li><strong>versioning scheme</strong>: How does the package manager specify versions? (e.g., semvar vs. git strings)</li>
+  <li><strong>distribution</strong>: How are packages distributed? GitHub, message pigeons?</li>
+  <li><strong>granularity</strong>: What minimal unit can be versioned?</li>
+  <li><strong>version locking</strong>: Can developers lock the results of a resolution so itss reproducible?</li>
+  <li><strong>qualifiers</strong>: Can we select specific dependencies based on some build config?</li>
+  <li><strong>dependency range operators</strong>: This is what it sounds like - using &lt;,&gt;,= to specify versions acceptable</li>
+  <li><strong>range modifiers</strong>: Allow developers to select ranges with terms like minor, etc.</li>
+  <li><strong>resolution process</strong>: we evaluate based on correctness (are the solutions correct?), completeness (do we always find a solution if one exists?), and user preferences (can I give them?).</li>
+  <li><strong>approximae solutions</strong> If a solution isn’t found, can we relax constraints and find one anyway?</li>
+  <li><strong>missing dependencies</strong>: If a dependency cannot be satisifed, do we exit and fail, or install the most up-to-date anyway?</li>
+  <li><strong>conflicts</strong>: Do we bail with an error if the same package is needed in two versions, or install both of them?</li>
+</ul>
+
+<p>And here is the table of results from the census, this is a great resource!</p>
+
+<p><img src="/build-notes/assets/img/notes/table-2-cudf-solvers-abate-2020.png" alt="/build-notes/assets/img/notes/table-2-cudf-solvers-abate-2020.png" /></p>
+
+<p>The authors are happy to report that, based on their cesus, they do see many
+package managers using more modular, standardized solvers over ad-hoc approaches.
+They note that only opam has embraced the “separation of concern” idea, and they think this
+is because the CUDF format doesn’t allow for overlapping versions and “dependency constaints involving qualifiers” (I’m not sure what an example of this is). Eg.., opam looks like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opam <span class="nb">install </span>merlin <span class="nt">--criteria</span><span class="o">=</span><span class="s2">"-changed,-removed"</span>
+</code></pre></div></div>
+<p>The social reason that the idea isn’t more widespread is because a lot of major
+tool communities would need to refactor to use a common standard, and one they don’t control,
+and it would be a lot of work.</p>
+
+<blockquote>
+  <p>If it ain’t broken, don’t fix it!</p>
+</blockquote>
+
+<p>I’d also like to point out that this paper got the quote from Field of Dreams incorrect! It’s not:</p>
+
+<blockquote>
+  <p>If you build it, they will come</p>
+</blockquote>
+
+<p>but actually:</p>
+
+<blockquote>
+  <p>If you build it, he will come</p>
+</blockquote>
+
+<p>How did the reviewers miss this (<a href="https://en.wikipedia.org/wiki/Field_of_Dreams#Plot">ref</a>)?</p>
+
+
+      <hr> 
+      <ol class="bibliography"></ol>
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+    </div>
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

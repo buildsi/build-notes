@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Tuckericse07 Opium | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Tuckericse07 Opium" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="OPIUM: Optimal Package Install/Uninstall Manager" />
+<meta property="og:description" content="OPIUM: Optimal Package Install/Uninstall Manager" />
+<link rel="canonical" href="/build-notes/papers/tuckericse07-opium" />
+<meta property="og:url" content="/build-notes/papers/tuckericse07-opium" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tuckericse07 Opium" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"OPIUM: Optimal Package Install/Uninstall Manager","headline":"Tuckericse07 Opium","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/papers/tuckericse07-opium"},"url":"/build-notes/papers/tuckericse07-opium"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#opium-optimal-package-installuninstall-manager">OPIUM: Optimal Package Install/Uninstall Manager</a>
+    <ol>
+      <li><a href="#overview">Overview</a>
+        <ol>
+          <li><a href="#why-dynamic-linking">Why dynamic linking?</a></li>
+          <li><a href="#the-three-problems-of-package-management">The Three Problems of Package Management</a></li>
+          <li><a href="#terms">Terms</a></li>
+        </ol>
+      </li>
+      <li><a href="#the-install-problem">The Install Problem</a></li>
+      <li><a href="#the-minimal-install-problem">The Minimal Install Problem</a></li>
+      <li><a href="#the-uninstall-problem">The Uninstall Problem</a></li>
+    </ol>
+  </li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Tuckericse07 Opium</h3>
+      <span>
+        Updated on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+         <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_papers/tuckericse07-opium.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <h1 id="opium-optimal-package-installuninstall-manager">OPIUM: Optimal Package Install/Uninstall Manager</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>This <a class="citation" href="#tucker+:icse07-opium">[1]</a> is a package manager developed by some guys at UCSD circa 2007. The authors
+claim that it is complete (if a solution exists, it will be found) and allows for
+a new optimization metric to minimize installed packages (via an objective function).
+Their tool uses <a href="https://ieeexplore.ieee.org/document/1395654">Pueblo</a> for the pseudo-boolean solver, the <a href="https://www.gnu.org/software/glpk/">GNU Linear Programming Kit</a> for the ILP solver, and the foci theorum for producing unsatisfiability proofs.</p>
+
+<h3 id="why-dynamic-linking">Why dynamic linking?</h3>
+
+<p>Static linking is when libraries are included alongside a binary (and available immediately) and dynamic linking is when they are found on the host (<a href="https://www.geeksforgeeks.org/static-and-dynamic-linking-in-operating-systems/">ref</a>)</p>
+
+<p>Ah! This might be how we could parse a binary and figure out it’s dependencies (from the source above):</p>
+
+<blockquote>
+  <p>Every dynamically linked program contains a small, statically linked function that is called when the program starts. This static function only maps the link library into memory and runs the code that the function contains. The link library determines what are all the dynamic libraries which the program requires along with the names of the variables and functions needed from those libraries by reading the information contained in sections of the library.</p>
+</blockquote>
+
+<p>Dynamic linking can be more efficient because you just load libraries into memory once.</p>
+
+<h3 id="the-three-problems-of-package-management">The Three Problems of Package Management</h3>
+
+<ul>
+  <li><strong>The Install Problem</strong> can a new package be installed? If so, how?</li>
+  <li><strong>Minimal Install Problem</strong> figure out the optimal way to install based on minimizing an objective function.</li>
+  <li><strong>Uninstall Problem</strong>: Given a new package to install, figure out the minimal to <em>remove</em> to make it work.</li>
+</ul>
+
+<p>The authors solve each of the problems above as follows:</p>
+
+<ul>
+  <li><strong>The Install Problem</strong> using a SAT solver on some encoding of the distribution.</li>
+  <li><strong>Minimal Install Problem</strong> this encoding is essentially a “pseudo-boolean” problem that solves this issue, something called <a href="https://ieeexplore.ieee.org/document/1395654">Pueblo</a>?</li>
+  <li><strong>Uninstall Problem</strong>: they tackle this by starting with a package that isn’t installable, and then figuring out what to remove to make it work.</li>
+</ul>
+
+<h3 id="terms">Terms</h3>
+
+<ul>
+  <li><strong>Installation Profile</strong> the set of packages installed on a machine. If it’s valid, all dependency clauses (requires, conflicts) are satisfied.</li>
+</ul>
+
+<h2 id="the-install-problem">The Install Problem</h2>
+
+<p>apt-get works by traversing the dependency graph and creating a set of packages that are needed, but it doesn’t go back to look again so it’s less complete. Opium works by creating a variable for each package, and then creating constraints (as equations) for each one that are represented as boolean conditions to evaluate to True or False.</p>
+
+<h2 id="the-minimal-install-problem">The Minimal Install Problem</h2>
+
+<p>Given a few sets of solutions, they can assign a cost to things like adding extra packages,
+and then use a SAT solver and bias toward a particular choice (with fewer extras, or minimal size).</p>
+
+<h2 id="the-uninstall-problem">The Uninstall Problem</h2>
+
+<p>If a solution isn’t found, the solver returns a “resolution proof tree” which shows why it wasn’t. The leaves of the tree are packages that can be tested to be removed to see if a solution is then possible.</p>
+
+<p>Pages 5-9 have algorithms and proofs for how it works.</p>
+
+<hr />
+
+<ol class="bibliography"><li><div>
+    <div><span id="tucker+:icse07-opium">C. Tucker, D. Shuffelton, R. Jhala, and S. Lerner, “OPIUM: Optimal Package Install/Uninstall Manager,” in <i>Proceedings of the 29th International Conference on Software Engineering</i>, USA, 2007, pp. 178–188.</span>
+    <a href="/build-notes/paper-details/tucker+_icse07-opium.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/tucker+icse07-opium-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/tucker+_icse07-opium.html"></a></li></ol>
+
+
+      <hr> 
+      <ol class="bibliography"></ol>
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+    </div>
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

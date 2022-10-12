@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Abate 2013 Modular Package Manager | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Abate 2013 Modular Package Manager" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Modular Package Manager Architecture" />
+<meta property="og:description" content="A Modular Package Manager Architecture" />
+<link rel="canonical" href="/build-notes/papers/abate-2013-modular-package-manager" />
+<meta property="og:url" content="/build-notes/papers/abate-2013-modular-package-manager" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Abate 2013 Modular Package Manager" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"A Modular Package Manager Architecture","headline":"Abate 2013 Modular Package Manager","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/papers/abate-2013-modular-package-manager"},"url":"/build-notes/papers/abate-2013-modular-package-manager"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#a-modular-package-manager-architecture">A Modular Package Manager Architecture</a>
+    <ol>
+      <li><a href="#tldr">TLDR</a></li>
+      <li><a href="#overview">Overview</a>
+        <ol>
+          <li><a href="#the-upgrade-problem">The Upgrade Problem</a></li>
+          <li><a href="#modular-package-management">Modular package management</a></li>
+          <li><a href="#scenarios">Scenarios</a></li>
+          <li><a href="#solvers">Solvers</a></li>
+        </ol>
+      </li>
+      <li><a href="#takeaways">Takeaways</a></li>
+      <li><a href="#terms">Terms</a>
+        <ol>
+          <li><a href="#mancoosi-package-manager-mpm">Mancoosi Package Manager (MPM)</a>
+            <ol>
+              <li><a href="#performance-testing">Performance Testing</a></li>
+            </ol>
+          </li>
+          <li><a href="#related-work">Related Work</a></li>
+          <li><a href="#data-and-appendix">Data and Appendix</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Abate 2013 Modular Package Manager</h3>
+      <span>
+        Updated on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+         <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_papers/abate-2013-modular-package-manager.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <h2 id="a-modular-package-manager-architecture">A Modular Package Manager Architecture</h2>
+
+<h3 id="tldr">TLDR</h3>
+
+<p>Mancoosi Package Manager (MPM) is a hodge podge of debian tools (the client, and hooks to apt) in Python and standards
+(using CUDF as input output for an upgrade scenario) and it’s slow as heck, but performs better than other
+Debian-based package mangers. This paper is more a review of CUDF and then argument that modularity is the way
+to go, as demonstrated by a few studies that show this strategy comes up with more optimal solutions.</p>
+
+<h3 id="overview">Overview</h3>
+
+<p>The authors present <strong>package managers</strong> the tools to install/remote software, and argue
+that a modular architecture is ideal to allow for choosing backends and dependency solvers.
+Installing packages is hard because:</p>
+
+<ul>
+  <li>you can’t easily put them together, they are modular</li>
+  <li>you can’t easily install more than one version of the same thing</li>
+  <li>they can change rapidly, and an initial install of several packages can break in the future (conflits)</li>
+  <li>you have to often install them on shared resources with different levels of permissions, etc.</li>
+</ul>
+
+<p>Because installing packages is hard, we have package managers! Package managers generally:</p>
+
+<ul>
+  <li>they are the tools that the user interacts with (e.g., “apt-get install…)</li>
+  <li>can get and install packages from some remote resource (e.g., mirrors, cloudy places, GitHub)</li>
+  <li>they have some means to assess dependencies and create an update plan (e.g., that CUDF text file)</li>
+  <li>they execute the update plan, and fall back if things fail.</li>
+</ul>
+
+<p>This can get complicated very quickly because of logical complexity (if you have a huge set of dependencies
+and conflicts it’s harder to find a solution) and scale (the more packages, the bigger the hairball to untangle).
+Scale also takes into account the size of “the place you install packages from.” The more you have,
+the more resources that are needed for the remote, period.</p>
+
+<p>The authors argue that the front end (the client interacting with the user) should be separate from the
+back end (the dependency solver). They present their proof of concept, the Mancoosi Package Manager 
+(MPM) that uses the Common Upgradeability Description Format (CUDF) and something called 
+“the user preferences language” that helps do just that -
+get preferences from the user.</p>
+
+<h4 id="the-upgrade-problem">The Upgrade Problem</h4>
+
+<p>You are usually okay when starting with a FOSS operating system, but as soon as a few packages
+upgrade, you start running into dependency problems. This leads us to… <strong>dependency hell!</strong></p>
+
+<blockquote>
+  <p>the user gets entangled in an inextricable web of dependencies and conflicts that state-of-the-art package managers are unable  to handle.</p>
+</blockquote>
+
+<p>And I love that this definition is included in the paper! They next walk through a dummy
+example of how things break with python-simpy, showing the packages updated, installed, and removed for each 
+(see <a class="citation" href="#abate-2013-modular-package-manager">[1]</a>). They show how MPM is better because it gives the user
+control to specify criteria. For example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpm <span class="nt">-c</span> <span class="s2">"-removed,-changed"</span> <span class="nb">install </span>python-simpy
+</code></pre></div></div>
+
+<p>Says to install python-simply and minimize removed and changed packages. The command is slow (~10 seconds)
+and they justify this by saying it’s just a proof of concept. This gives us a good idea for a framework to test package managers.</p>
+
+<p class="thi-tip"><i class="material-icons mat-icon">info</i>We would want to be able to build contains across package managers (apt-get, yum, aptitude, etc.) and then simply install a particular package, and parse the terminal output to see the decision that was decided upon.</p>
+
+<p>See the <a href="/build-notes/notes/containers#decision-comparison">containers</a> idea section for this idea.</p>
+
+<h4 id="modular-package-management">Modular package management</h4>
+
+<p>The authors say that dependency solving is really hard, and it makes sense to de-couple it from
+the rest of the package manager (the client to manage software components) so that they can be re-usable 
+components. This brings back the idea of “solver farms,” or externally hosted solvers. 
+Figure 1 in their paper shows “modular package manager architecture” but I didn’t find it very intuitive.</p>
+
+<h4 id="scenarios">Scenarios</h4>
+
+<p>This is the first paper that I’ve encountered that describes different scenarios that package
+managers can run into (e.g., healthy, peaceful). This is something that I think should be better flushed
+out into an idea - “What is the standard or schema for some package manager flow?”
+See the <a href="/build-notes/notes/flow">flow</a> page for this idea.
+It sounds like there is work in progress to standardized criteria and aggregation functions,
+but this paper was 7 years ago, so we will need to read a more recent one (abate 2020?)
+to know the current status.</p>
+
+<h4 id="solvers">Solvers</h4>
+
+<p>This paper has a short list of solvers (p. 16) that use CUDF, but I remember a more robust table
+in the Abate 2020 paper, so I won’t reproduce the list here.</p>
+
+<h3 id="takeaways">Takeaways</h3>
+
+<p>The takeaway from this paper is that many package managers use ad-hoc heuristics, and this is messy.
+If we uncouple dependency resolution from the package manager (e.g., the solvers) we can
+more easily share components. The package manager should act as a skeleton client to interact with the
+user, and we should be able to plug in components. This paper presents the general idea of embracing
+already existing package managers (e.g., apt) and functionality, and integrating into a new tool (MPM)
+that can take as input criteria and solvers, and then use CUDF as an input/output format to make 
+them more modular. I think this was probably a novel idea back in 2013, but now there must be more
+recent work that improves upon the ideas.</p>
+
+<h3 id="terms">Terms</h3>
+
+<ul>
+  <li><strong>package</strong> A software component paired with metadata that describes how to install it on a system. Each package can follow a unique development pipeline and even versioning scheme <a href="https://www.youtube.com/watch?v=NSemlYagjIU">reference</a>.</li>
+  <li><a href="https://www.mancoosi.org/cudf/">CUDF</a> The Common Upgradeability Description Format, a text file that describes all conflicts, and dependencies based on some user preferences to install software. See the <a href="/build-notes/terms/cudf">[cudf]</a>
+ term page for notes from this paper.</li>
+  <li><a href="">user preference language</a> Allows to specify a list of criteria (sometimes called measurements) of package selectors, and each has a plus or minus prefix to indicate minimizing or maximizing.</li>
+</ul>
+
+<h4 id="mancoosi-package-manager-mpm">Mancoosi Package Manager (MPM)</h4>
+
+<p>This is a proof of concept implementation of the idea of the authors, a modular package manager.
+It uses CUDF to capture dependency information and the user preference langauage to ask the user
+for what to optimize, etc. The implication is that the MPM is a creation of the <a href="https://www.mancoosi.org/">Mancoosi project</a>.
+The idea of MPM is that it uses CUDF as input/output. MPM:</p>
+
+<ul>
+  <li>uses apt on the back end to parse the command line and install packages</li>
+  <li>has removed, new, changed, and notuptodate as criteria</li>
+  <li>you can specify a solver plugin with <code class="language-plaintext highlighter-rouge">-s &lt;solver&gt;</code> (that’t kind of cool! Will we try this with a custom solver?)</li>
+  <li>you can specify a criterion with <code class="language-plaintext highlighter-rouge">-c &lt;option&gt;</code> (e.g., -removed)</li>
+  <li><code class="language-plaintext highlighter-rouge">-o &lt;option&gt;</code> passes an option to apt</li>
+  <li><code class="language-plaintext highlighter-rouge">debtodudf</code> is used to translate Debian package metadata to CUDF</li>
+  <li>MPM is written in Python and uses Python bindings to apt (wow, didn’t expect that!)</li>
+  <li>supports all the same command line arguments as apt</li>
+  <li>uses the <code class="language-plaintext highlighter-rouge">aspcud</code> solver that won one of the MISC competitions.</li>
+</ul>
+
+<p class="thi-tip"><i class="material-icons mat-icon">info</i>Regardless of the format we use to represent an upgrade scenario (e.g., CUDF) there would always need to be some kind of translator to derive it from the original user request and package manager.</p>
+
+<p>The above has me wondering if we want to just work on the solver (e.g., take the same constraints but
+add another level of information to it) or if we want to require the CUDF specification to better represent
+some of this information (arguably this would be harder because the package managers would have to extract it,
+and might be redundant if we would need to double check again). I’m also wondering why there is such a focus on
+apt/Debian.</p>
+
+<h5 id="performance-testing">Performance Testing</h5>
+
+<p>The authors first justify that time isn’t important because their implementation is a proof of concept.
+For testing they use containers, and do 5 groups of tests that add/remove the same package under
+different Debian releases. The salient difference in the package release universes is that newer ones
+have many more packages (logically). For each, they did 162 (why 162?) install/remove requests, and randomly
+selected packages ensuring that there is a solution (again, how?) They only consider results that made it
+within the 300s timeout. They classified results into three categories:</p>
+
+<ul>
+  <li>best solution</li>
+  <li>optimal solution</li>
+  <li>failure (crashed or not a correct solution)</li>
+</ul>
+
+<p>They show that performance varies between 50% and 75%, with MPM being the best (see figure).</p>
+
+<p><img src="https://www.mancoosi.org/measures/packagemanagers/2012/mpm-results-2012.png" alt="https://www.mancoosi.org/measures/packagemanagers/2012/mpm-results-2012.png" /></p>
+
+<p>This is overall one way to go about testing how well solvers work between different package managers, but it
+seems rough around the edges because they are working as black boxes for the most part.</p>
+
+<h4 id="related-work">Related Work</h4>
+
+<p>Pages 20-21 walk through Debian and RHEL distribution package managers (apt vs. yum) and all the
+associated tools that do everything from fetch packages to using solvers. The interesting observation
+here is that tools are optimized to their repository sets, e.g., a well defined set of repository metadata
+can allow for a heuristic that ensures some solution.  Table 2 is useful (and small enough to include here)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Solver</th>
+      <th>Optimization</th>
+      <th>Complete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>apt-get</td>
+      <td>internal</td>
+      <td>hard-coded</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>aptitude</td>
+      <td>internal</td>
+      <td>hard-coded</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>cupt</td>
+      <td>internal</td>
+      <td>hard-coded</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>smart</td>
+      <td>internal</td>
+      <td>programmable</td>
+      <td>maybe</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Wow, there are at ton of “hard-coded”s in that table!</p>
+
+<h4 id="data-and-appendix">Data and Appendix</h4>
+
+<ul>
+  <li>Appendix A has a nice summary of the CUDF format</li>
+  <li><a href="http://data.mancoosi.org/papers/ist2012/">Data</a> for package install comparison analysis</li>
+  <li><a href="https://www.mancoosi.org/measures/packagemanagers/2012/">Data Writeup</a> with plot.</li>
+</ul>
+
+
+      <hr> 
+      <ol class="bibliography"><li><div>
+    <div><span id="abate-2013-modular-package-manager">P. Abate, R. Di Cosmo, R. Treinen, and S. Zacchiroli, http://www.sciencedirect.com/science/article/pii/S0950584912001851“A modular package manager architecture”&lt;/a&gt; <i>Information and Software Technology</i>, vol. 55, no. 2, pp. 459–474, 2013.</span>
+    <a href="/build-notes/paper-details/abate-2013-modular-package-manager.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/abate-2013-modular-package-manager-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/abate-2013-modular-package-manager.html"></a></li></ol>
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+    </div>
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Containers Investigation for Build | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Containers Investigation for Build" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="tocIn this post" />
+<meta property="og:description" content="tocIn this post" />
+<link rel="canonical" href="/build-notes/notes/containers" />
+<meta property="og:url" content="/build-notes/notes/containers" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Containers Investigation for Build" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"tocIn this post","headline":"Containers Investigation for Build","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/notes/containers"},"url":"/build-notes/notes/containers"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#proposed-rd-tasks">Proposed R&amp;D Tasks</a>
+    <ol>
+      <li><a href="#1-understand-models-of-container-abi-compatibility">1. Understand models of container ABI compatibility</a></li>
+      <li><a href="#2-research-ways-to-dynamically-assemble-software-stacks-around-abi-constraints">2. Research ways to dynamically assemble software stacks around ABI constraints.</a></li>
+      <li><a href="#3-what-are-the-inherent-complexities-around-integrating-modern-software-stacks-with-hpc">3. What are the inherent complexities around integrating modern software stacks with HPC?</a></li>
+      <li><a href="#4-how-can-we-build-infrastructure-to-support-abi-based-dependency-resolution">4. How can we build infrastructure to support ABI-based dependency resolution?</a></li>
+    </ol>
+  </li>
+  <li><a href="#ideas-for-projects">Ideas for Projects</a>
+    <ol>
+      <li><a href="#decision-comparison">Decision Comparison</a></li>
+      <li><a href="#bootstrap-cudf">Bootstrap CUDF</a></li>
+    </ol>
+  </li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Containers Investigation for Build</h3>
+      <span>
+        Posted on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+        
+          
+          
+        | <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_notes/containers.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <div id="toc">
+  <div class="toc-title">
+    <i class="material-icons mat-icon">toc</i><span>In this post</span>
+  </div>
+  <div id="full">
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#proposed-rd-tasks" id="markdown-toc-proposed-rd-tasks">Proposed R&amp;D Tasks</a>    <ul>
+      <li><a href="#1-understand-models-of-container-abi-compatibility" id="markdown-toc-1-understand-models-of-container-abi-compatibility">1. Understand models of container ABI compatibility</a></li>
+      <li><a href="#2-research-ways-to-dynamically-assemble-software-stacks-around-abi-constraints" id="markdown-toc-2-research-ways-to-dynamically-assemble-software-stacks-around-abi-constraints">2. Research ways to dynamically assemble software stacks around ABI constraints.</a></li>
+      <li><a href="#3-what-are-the-inherent-complexities-around-integrating-modern-software-stacks-with-hpc" id="markdown-toc-3-what-are-the-inherent-complexities-around-integrating-modern-software-stacks-with-hpc">3. What are the inherent complexities around integrating modern software stacks with HPC?</a></li>
+      <li><a href="#4-how-can-we-build-infrastructure-to-support-abi-based-dependency-resolution" id="markdown-toc-4-how-can-we-build-infrastructure-to-support-abi-based-dependency-resolution">4. How can we build infrastructure to support ABI-based dependency resolution?</a></li>
+    </ul>
+  </li>
+  <li><a href="#ideas-for-projects" id="markdown-toc-ideas-for-projects">Ideas for Projects</a>    <ul>
+      <li><a href="#decision-comparison" id="markdown-toc-decision-comparison">Decision Comparison</a></li>
+      <li><a href="#bootstrap-cudf" id="markdown-toc-bootstrap-cudf">Bootstrap CUDF</a></li>
+    </ul>
+  </li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="overview">Overview</h2>
+
+<p>One of the particularly hard aspects of compatibility that we plan to investigate under BUILD is the relationship between the binaries in containers with the binaries on the host system.  Containers in the cloud encapsulate a software ecosystem, generally for a single application and all of its dependencies for some base operating system.  Used as initially intended, containers enable very complex applications to be used portably across machines. However, in HPC, the software ecosystem cannot be fully encapsulated as libraries like MPI, GPU runtimes, and libfabrics typically require access to hardware and drivers on the host OS.  There are subtleties around how best to bindmount libraries and other software from the host OS into a container while ensuring compatibility.  In most cases today, compatibility is not ensured, and containers are simply run until they fail (due to an OS update or some other incompatibility).</p>
+
+<p>BUILD aims to do better by doing detailed comparison of host and containerized software stacks and selecting the best interfaces to use for maximum container portability and performance.  These types of interfaces are particularly important for machine learning applications that are a) hard to build and b) require good performance to run. We will investigate how best to package HPC and ML applications in containers and how to select, validate, and maintain a good binary interface between container and host OS’s.</p>
+
+<h2 id="proposed-rd-tasks">Proposed R&amp;D Tasks</h2>
+<p>Proposed research and development topics include (but are not limited to) the following:</p>
+
+<h3 id="1-understand-models-of-container-abi-compatibility">1. Understand models of container ABI compatibility</h3>
+<p>This can include MPI libraries, GPU libraries, libfabrics, scheduler integration, or any interface that needs to remain compatible to ensure container portability. We will conduct studies to determine rules around ABI layer selection, analysis techniques to compare ABI compatibility between containers and hosts, and best practices for maintaining compatibility over time.</p>
+
+<h3 id="2-research-ways-to-dynamically-assemble-software-stacks-around-abi-constraints">2. Research ways to dynamically assemble software stacks around ABI constraints.</h3>
+<p>Running a container with hardware support on a host OS requires us to marry two or more independently curated software ecosystems (container and run host(s)) together. Given a set of ABI constraints, e.g. from several base OS or library versions, can we build a container that satisfies all of them? Can two applications be consolidated based on ABI requirements, or do they need to be in separate containers?How can we construct maximally performant and portable software stacks?</p>
+
+<h3 id="3-what-are-the-inherent-complexities-around-integrating-modern-software-stacks-with-hpc">3. What are the inherent complexities around integrating modern software stacks with HPC?</h3>
+<p>Modern open source software stacks evolve very rapidly, and it can be very hard for HPC applications to keep up with this rate of change. Often, rapid evolution comes at a price – these stacks are targeted at very specific environments, and adapting them for others (like HPC) can be difficult. For example, TensorFlow, a very popular machine learning tool, is maintained specifically for Google’s internal machines, and can be very difficult to build for HPC systems. Other language ecosystems like Python, Ruby, R, and JavaScript can also be hard to adapt for maximum performance.  How can we derive HPC-compatible builds of tools like these? How can we leverage host HPC software stacks from within portably built containers, and how can we guarantee portability over time?</p>
+
+<h3 id="4-how-can-we-build-infrastructure-to-support-abi-based-dependency-resolution">4. How can we build infrastructure to support ABI-based dependency resolution?</h3>
+<p>BUILD aims to build dependency resolvers that check ABI and solve around ABI conflicts automatically.  There will likely need to be databases of ABI and build information to back such a resolver, and we have not, so far, investigated how best to build these. We will leverage Dr. Sochat’s expertise both in software ecosystems, containers, and scientific workflow design to build such infrastructure.</p>
+
+<hr />
+
+<h2 id="ideas-for-projects">Ideas for Projects</h2>
+
+<p>Still unrelated to the R&amp;D tasks above, the following projects are inspired by papers, and could be useful
+in some way integrated into the tasks above.</p>
+
+<h3 id="decision-comparison">Decision Comparison</h3>
+
+<p>If we need to (superficially) compare how package managers make decisions, we could select a small number of packages,
+and akin to how they did in <a href="/build-notes/papers/abate-2013-modular-package-manager">[abate-2013-modular-package-manager]</a>
+ attempt to install
+each package across different package managers (e.g., apt-get, yum, aptitute, etc.) and parse the output to determine how
+the managers make decisions <a class="citation" href="#abate-2013-modular-package-manager">[1]</a>. We would then want to look at how each one works and map the behavior that we see to 
+some solver or heuristic.</p>
+
+<p>This would help to understand how well-known package managers work, and to familiarize with them so that
+if we wanted to imagine changing them to be more modular, we might have a sense of how to go about it.</p>
+
+<h3 id="bootstrap-cudf">Bootstrap CUDF</h3>
+
+<p>I was reading in <a class="citation" href="#abate-2013-modular-package-manager">[1]</a> that CUDF can allow for definition of “additional properties.”
+Would our first efforts want to try and define additional properties related to ABI compatability, and just use standard CUDF? I realize now that I don’t have a sense of if CUDF is a good idea/direction or not. Based on the papers presenting it, it seems to be?</p>
+
+<hr />
+
+<ol class="bibliography"><li><div>
+    <div><span id="abate-2013-modular-package-manager">P. Abate, R. Di Cosmo, R. Treinen, and S. Zacchiroli, http://www.sciencedirect.com/science/article/pii/S0950584912001851“A modular package manager architecture”&lt;/a&gt; <i>Information and Software Technology</i>, vol. 55, no. 2, pp. 459–474, 2013.</span>
+    <a href="/build-notes/paper-details/abate-2013-modular-package-manager.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/abate-2013-modular-package-manager-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/abate-2013-modular-package-manager.html"></a></li></ol>
+
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+      
+      
+      <a class="tag-chip" href="/build-notes/tags#containers"><div class="chip z-depth-1">containers</div></a>
+      
+    </div>
+    <style type="text/css">
+.related-posts{
+  border: 3px dotted #2e87e7;
+  border-radius: 5px;
+  margin: 20px 0;
+  padding: 10px 10px 0 10px;
+}
+.related-posts span{
+  font-size: 130%;
+  font-weight: 500;
+  color: #2e87e7;
+}
+.related-posts ul{
+  margin-top: 5px!important;
+}
+.thi-icon{
+  float: left;
+  line-height: inherit;
+  margin-right: 5px;
+  margin-left: 2px;
+  color: #2e87e7;
+}
+</style>
+
+<div class="related-posts">
+  <i class="material-icons thi-icon">grade</i><span>Related Notes</span>
+  
+  <ul>
+    
+    
+
+    
+    
+      
+    
+  </ul>
+</div>
+
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Abate2012dependency | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Abate2012dependency" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Dependency Solving: a Separate Concernin Component Evolution Management" />
+<meta property="og:description" content="Dependency Solving: a Separate Concernin Component Evolution Management" />
+<link rel="canonical" href="/build-notes/papers/abate2012dependency" />
+<meta property="og:url" content="/build-notes/papers/abate2012dependency" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Abate2012dependency" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"Dependency Solving: a Separate Concernin Component Evolution Management","headline":"Abate2012dependency","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/papers/abate2012dependency"},"url":"/build-notes/papers/abate2012dependency"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#dependency-solving-a-separate-concernin-component-evolution-management">Dependency Solving: a Separate Concernin Component Evolution Management</a>
+    <ol>
+      <li><a href="#tldr">TLDR</a></li>
+      <li><a href="#overview">Overview</a>
+        <ol>
+          <li><a href="#the-upgrade-problem">The Upgrade Problem</a>
+            <ol>
+              <li><a href="#complexity-of-the-upgrade-problem">Complexity of the Upgrade Problem</a></li>
+              <li><a href="#complexity-in-the-case-of-component-evolution">Complexity in the Case of Component Evolution</a></li>
+              <li><a href="#dealing-with-exponentially-many-solutions">Dealing with exponentially many solutions</a></li>
+            </ol>
+          </li>
+          <li><a href="#dependency-solving-as-a-separate-concern">Dependency solving as a separate concern</a></li>
+          <li><a href="#mancoosi-international-solver-competition">Mancoosi International Solver Competition</a></li>
+          <li><a href="#data-and-appendix">Data and Appendix</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Abate2012dependency</h3>
+      <span>
+        Updated on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+         <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_papers/abate2012dependency.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <h2 id="dependency-solving-a-separate-concernin-component-evolution-management">Dependency Solving: a Separate Concernin Component Evolution Management</h2>
+
+<p><strong>Note that this paper seems very similar to <a class="citation" href="#abate-2013-modular-package-manager">[1]</a>, although the date is one year earlier. I’m going to do a more superficial reading to look for new information. It would be interesting to have more context about why there are these two similar papers</strong></p>
+
+<h3 id="tldr">TLDR</h3>
+
+<p>This paper <a class="citation" href="#abate2012dependency">[2]</a> is indeed similar to <a class="citation" href="#abate-2013-modular-package-manager">[1]</a> - the authors want to establish dependency solving as a “separate concern” by using CUDF and rationalize this by showing how well it works with implementations from the MISC competition.
+They show that complexity comes down to:</p>
+
+<ol>
+  <li>conflicts (metadata or different versions of the same thing),</li>
+  <li>large number of software packages in the repository, and</li>
+  <li>complexity of user preferences given 1 and 2.</li>
+</ol>
+
+<h3 id="overview">Overview</h3>
+
+<p>The paper has a nice introduction with “the law of continuing change”</p>
+
+<blockquote>
+  <p>A program that is used and that as an implementation of its specification reflectssome other reality, undergoes continual change or becomes progressively less useful.</p>
+</blockquote>
+
+<p>And this seems similar to the upgrade problem from <a class="citation" href="#abate-2013-modular-package-manager">[1]</a>. Basically, the more compoenents with different dependencies, the harder the problem, and the greater importance of tools to help. They note that “software modules” have different names depenending on the environment (e.g., some things have extensions, plugins, bundles, add-ons, etc.)</p>
+
+<h4 id="the-upgrade-problem">The Upgrade Problem</h4>
+
+<p>The authors again describe the upgrade problem.</p>
+
+<h5 id="complexity-of-the-upgrade-problem">Complexity of the Upgrade Problem</h5>
+
+<ul>
+  <li>given any request for install/remove, there are an exponential number of solutions (NP-complete)</li>
+  <li>there could actually be this many, and how do we choose the best?</li>
+</ul>
+
+<p>Package metadata is used to figure out solutions, including:</p>
+
+<ul>
+  <li>name</li>
+  <li>version</li>
+  <li>conflicts: “Don’t install this alongside!”</li>
+  <li>features: “What is provided by installing this?”</li>
+</ul>
+
+<p>Properties of a repository of components:</p>
+
+<ul>
+  <li>abundance: every package in the repository has dependencies satsfied by other packages in the repository (like a little, closed ecosystem that doesn’t need anything external)</li>
+  <li>peace: no package in the repository conflicts with another package in the repository.</li>
+</ul>
+
+<p>The authors then present theorums (and proofs!) for the following (these are again verbatim):</p>
+
+<p><strong>Theorem 1.</strong></p>
+
+<blockquote>
+  <p>Satisfiability of package upgrade requests is NP-complete, provided the com-ponent model features conflicts and disjunctive dependencies.</p>
+</blockquote>
+
+<p><strong>Theorem 2.</strong></p>
+
+<p>Installability of a package in an empty environment is in PTIME in any of the two following cases:</p>
+
+<ol>
+  <li>The component model does not allow for conflicts.</li>
+  <li>The component model does not allow for disjunctive dependencies or features, and the repository does not contain multiple versions of packages.</li>
+</ol>
+
+<h5 id="complexity-in-the-case-of-component-evolution">Complexity in the Case of Component Evolution</h5>
+
+<p>Installing new packages gets more complicated in that you have to upgrade old packages.
+Different managers handle this differently:</p>
+
+<ul>
+  <li>Debian only allows installing one version of a package at a time</li>
+  <li>RPM allows installing multiple at once, but it won’t work if packages with the same version have the same filesyste path</li>
+</ul>
+
+<p><strong>flat</strong> means that two packages can’t be installed with the same name.</p>
+
+<p><strong>Theorem 3.</strong></p>
+
+<blockquote>
+  <p>Existence of a flat installation containing a component is NP-complete, even when the component model does not allow for explicit conflicts, alternatives, and features.</p>
+</blockquote>
+
+<h5 id="dealing-with-exponentially-many-solutions">Dealing with exponentially many solutions</h5>
+
+<p>This is the step where we evaluate solutions as “paranoid” or “trendy” or otherwise
+try to satisfy user preferences.</p>
+
+<h4 id="dependency-solving-as-a-separate-concern">Dependency solving as a separate concern</h4>
+
+<p>The upgrade problem needs to be represented in a structured way in order to be able to “treat dependency solving as a separate concern.” We need to know:</p>
+
+<ol>
+  <li>describe all known installed and available components</li>
+  <li>describe components that need to be installed, removed, upgraded with constraints</li>
+  <li>what the user wants (user preferences)</li>
+</ol>
+
+<p>They again present CUDF, a domain specific language to represent points 1 and 2. CUDF has:</p>
+
+<ul>
+  <li>platform independence: agnostic to package manager, version scheme, etc.</li>
+  <li>solver independence</li>
+  <li>readability: it’s a simple text file</li>
+  <li>extensibility: only essential properties are captured in CUDF, but you can declare and use others</li>
+  <li>formal semantics: e.g., the structured terminology</li>
+</ul>
+
+<p>Their CUDF section here is exactly the same as in <a class="citation" href="#abate-2013-modular-package-manager">[1]</a>, I guess it’s okay to plagarize yourself :)</p>
+
+<h4 id="mancoosi-international-solver-competition">Mancoosi International Solver Competition</h4>
+<p>The authors discuss specifics of MISC 2010, generally, participant solvers received a CUDF document as input and needed to produce a CUDF encoded solution. There were problems ranging from easy to difficult, and participants could choose a paranoid or trendy scenario.</p>
+
+<p><img src="/build-notes/assets/img/notes/abate-2012-table-1.png" alt="/build-notes/assets/img/notes/abate-2012-table-1.png" /></p>
+
+<p>And there are complete results of the competition on page 17:</p>
+
+<p><img src="/build-notes/assets/img/notes/abate-2012-table-2.png" alt="/build-notes/assets/img/notes/abate-2012-table-2.png" /></p>
+
+<p>It’s interesting that the solvers perform differently depending on the problem sets.
+The “trendy” scenario is always more complex because there are more parameters.
+Figure 6. has a chart that compares package managers, but it uses patterns for bars
+and is incredibly hard to read. It looks like unsa is the best, consistently finding the
+best solution and being fastest.</p>
+
+<h4 id="data-and-appendix">Data and Appendix</h4>
+
+<ul>
+  <li>Appendix A and B have nice summaries of CUDF</li>
+</ul>
+
+
+      <hr> 
+      <ol class="bibliography"><li><div>
+    <div><span id="abate-2013-modular-package-manager">P. Abate, R. Di Cosmo, R. Treinen, and S. Zacchiroli, http://www.sciencedirect.com/science/article/pii/S0950584912001851“A modular package manager architecture”&lt;/a&gt; <i>Information and Software Technology</i>, vol. 55, no. 2, pp. 459–474, 2013.</span>
+    <a href="/build-notes/paper-details/abate-2013-modular-package-manager.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/abate-2013-modular-package-manager-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/abate-2013-modular-package-manager.html"></a></li>
+<li><div>
+    <div><span id="abate2012dependency">P. Abate, R. Di Cosmo, R. Treinen, and S. Zacchiroli, “Dependency solving: a separate concern in component evolution management,” <i>Journal of Systems and Software</i>, vol. 85, no. 10, pp. 2228–2240, 2012.</span>
+    <a href="/build-notes/paper-details/abate2012dependency.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/abate2012dependency-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/abate2012dependency.html"></a></li></ol>
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+    </div>
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

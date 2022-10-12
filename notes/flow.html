@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Package Manager Flow | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Package Manager Flow" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="tocIn this post" />
+<meta property="og:description" content="tocIn this post" />
+<link rel="canonical" href="/build-notes/notes/flow" />
+<meta property="og:url" content="/build-notes/notes/flow" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Package Manager Flow" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"tocIn this post","headline":"Package Manager Flow","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/notes/flow"},"url":"/build-notes/notes/flow"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#software-maintenance-technologies">Software Maintenance Technologies</a></li>
+  <li><a href="#package-manager">Package Manager</a></li>
+  <li><a href="#user-preferences">User preferences</a></li>
+  <li><a href="#scenarios">Scenarios</a></li>
+  <li><a href="#requests">Requests</a></li>
+  <li><a href="#terms">Terms</a></li>
+  <li><a href="#solvers">Solvers</a></li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Package Manager Flow</h3>
+      <span>
+        Posted on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+        | <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_notes/flow.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <div id="toc">
+  <div class="toc-title">
+    <i class="material-icons mat-icon">toc</i><span>In this post</span>
+  </div>
+  <div id="full">
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#software-maintenance-technologies" id="markdown-toc-software-maintenance-technologies">Software Maintenance Technologies</a></li>
+  <li><a href="#package-manager" id="markdown-toc-package-manager">Package Manager</a></li>
+  <li><a href="#user-preferences" id="markdown-toc-user-preferences">User preferences</a></li>
+  <li><a href="#scenarios" id="markdown-toc-scenarios">Scenarios</a></li>
+  <li><a href="#requests" id="markdown-toc-requests">Requests</a></li>
+  <li><a href="#terms" id="markdown-toc-terms">Terms</a></li>
+  <li><a href="#solvers" id="markdown-toc-solvers">Solvers</a></li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="overview">Overview</h2>
+
+<p>We should eventually be able to describe the makeup of a package manager - akin to how the
+Open Containers Initiative has an image-spec, distribution-spec, and runtime-spec for containers,
+we want similar specs to describe actions and states for package management. I don’t have a holistic view yet
+of what this should look like, but I’ll include interesting notes that are relevant.
+Here is an early understanding of a general flow:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user preferences --&gt; package manager --&gt; translate to upgrade problem (CUDF) --&gt; solver --&gt;  --&gt; CUDF-encoded solution --&gt; scenario --&gt; [if solution] --&gt; action [else] rollback
+</code></pre></div></div>
+
+<p>The above says that we start with user preferences that are assembled by the package manager, hand them off to a solver (package manager agnostic, used like plugins) to come up
+with a solution. There are several ways to describe a solution (scenario) that determines
+if we move forward or not. The input and output to the solver is a CUDF document that describes the needed changes. There are also terms that can describe the scenarios <a href="#terms">terms</a></p>
+
+<h2 id="software-maintenance-technologies">Software Maintenance Technologies</h2>
+
+<p>The “ingredients” of “software maintenance technologies” according to <a class="citation" href="#abate2012dependency">[1]</a> are:</p>
+
+<ul>
+  <li>dependencies</li>
+  <li>conflicts</li>
+  <li>package managers with dependency solving capabilities</li>
+</ul>
+
+<h2 id="package-manager">Package Manager</h2>
+
+<p>The package manager should generally have the following inputs and outputs <a class="citation" href="#abate2020dependency">[2]</a></p>
+
+<ol>
+  <li>Take as input:
+    <ul>
+      <li>the current status of packages on the system</li>
+      <li>a universe of all available packages (in other papers called <code class="language-plaintext highlighter-rouge">U</code>)</li>
+      <li>a user request (e.g., “install xyz, remove xyz”)</li>
+      <li>user preferences (e.g., “minimize updated software”)</li>
+    </ul>
+  </li>
+  <li>Return as output:
+    <ul>
+      <li>an upgrade plan: a list of actions to take on the system to reach the status that the user wants (e.g., installing thething)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>And we can evaluate these steps based on <strong>expressivity</strong> - how empowered the user is to
+express preferences, and <strong>completeness</strong> - being able to propose a valid update plan (the output) when one exists.</p>
+
+<p>In <a class="citation" href="#abate2020dependency">[2]</a> they (mostly same) authors make a similar statement, saying that package managers should (this is verbatim):</p>
+
+<ol>
+  <li>devise upgrade plans that are correct (i.e. no plan that violates component expectations is proposed) and complete (i.e. every time asuitable plan exists, it can be found)</li>
+  <li>have performances that scale up gracefully at component repositories growth</li>
+  <li>empower users to express preferences on the desired component configuration when several options exist, which is often the case</li>
+</ol>
+
+<h2 id="user-preferences">User preferences</h2>
+
+<p>The user should be able to specify high level criteria to describe what they want (e.g., minimize changed packages).
+Of course the more criteria we define, the more likely we are to not be able to find a solution or
+have something pareto-optimal. Approaches to deal with this include:</p>
+
+<ul>
+  <li><strong>Lexicographic</strong>: order criteria by importance (e.g., a security update gets ranked higher)</li>
+  <li><strong>Weighted sum</strong>: aggregate criteria into single measure using some set of weights</li>
+  <li><strong>lexmin and lexmax</strong>: (haven’t read about yet)</li>
+</ul>
+
+<p>The authors in <a class="citation" href="#abate-2013-modular-package-manager">[3, P. 14]</a> propose to do the following:</p>
+
+<ol>
+  <li>define a dictionary of criteria</li>
+  <li>define a dictionary of aggregation functions (e.g., the above)</li>
+  <li>write the user preference as an expression of the aggregation function (op) and directionality (e.g., +/-) for each criteria. E.g.,</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lex(-removed, -changed)
+</code></pre></div></div>
+
+<p>Says use lexmin to aggregate, and minimize changed and removed packages. They present a nice table of
+optimization criteria:</p>
+
+<p><img src="/build-notes/assets/img/notes/table-1-optimization-criteria-abate-2013.png" /></p>
+
+<p>And this is a neat idea because you can then describe specific scenarios (and name them)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>paranoid=lex(−removed,−changed)
+trendy=lex(−removed,−notuptodate,−unsatrec,−new)
+</code></pre></div></div>
+
+<h2 id="scenarios">Scenarios</h2>
+
+<p>The paper <a class="citation" href="#abate-2013-modular-package-manager">[3, P. 12]</a> describes different solution scenarios,
+rooted in CUDF, and this would be a good terminology to harden to better describe our work.</p>
+
+<p>We start with a <a href="/build-notes/terms/cudf">CUDF document</a>
+ and define a solution to it 
+as a subset (<code class="language-plaintext highlighter-rouge">S</code>) of the entire package universe (<code class="language-plaintext highlighter-rouge">U</code>). We then say that <code class="language-plaintext highlighter-rouge">dom(S)</code> (domain) are the pairs
+of packages (e.g., <code class="language-plaintext highlighter-rouge">(name, version)</code> in our subset (e.g., what CUDF is asking for) in  <code class="language-plaintext highlighter-rouge">S</code>, and <code class="language-plaintext highlighter-rouge">pro(S)</code> (provided)
+the same <code class="language-plaintext highlighter-rouge">(name, version)</code> pairs of all that are available, which can be infinite (gulp!).</p>
+
+<p>This defines an atomic package constraint. A subset <code class="language-plaintext highlighter-rouge">S</code> in <code class="language-plaintext highlighter-rouge">U</code> is (these are written verbatim from the paper):</p>
+
+<ul>
+  <li><strong>abundant</strong> if every disjunction in the dependency of every package in <code class="language-plaintext highlighter-rouge">S</code> contains a package constraint that is satisfied by <code class="language-plaintext highlighter-rouge">dom(S) ∪ pro(S)</code>. I think this is saying that a solution is abundant if every nested dependency has it’s own dependency needs met by either the set of pairs that we need, or the set of pairs available to us. It’s abundant possibly because it says that the universe is rich with everything that we need.</li>
+  <li><strong>peaceful</strong> if no atomic package constraint in the conflicts of any package <code class="language-plaintext highlighter-rouge">p∈S</code> is satisfied by <code class="language-plaintext highlighter-rouge">dom(S−{p}) ∪ pro(S−{p}</code>). I think this is saying that if we removed p from both sets, there would be no conflict.</li>
+</ul>
+
+<h2 id="requests">Requests</h2>
+
+<p>A subest <code class="language-plaintext highlighter-rouge">S</code> of the universe <code class="language-plaintext highlighter-rouge">U</code> satisfies a request:</p>
+
+<ul>
+  <li><strong>install</strong> φ if every atomic constraint in φ is satisfied by <code class="language-plaintext highlighter-rouge">dom(S) ∪ pro(S)</code>. This is saying we move forward to install if the universe is abundant?)</li>
+  <li><strong>remove</strong> φ if no element of φ is satisfied by <code class="language-plaintext highlighter-rouge">dom(S) ∪ pro(S)</code>.</li>
+</ul>
+
+<p>A set <code class="language-plaintext highlighter-rouge">S</code> is only a solution if it is abundant, healthy, and satisfies the request.
+Solutions are allowed to have several packages with the same name and different versions.</p>
+
+<h2 id="terms">Terms</h2>
+
+<p>We can further classify solutions based on:</p>
+
+<ul>
+  <li><strong>correctness</strong>: have we satisfied the user request?</li>
+  <li><strong>quality</strong>: do I like the solution?</li>
+</ul>
+
+<h2 id="solvers">Solvers</h2>
+
+<p>It looks like there are many solver technologies, as references by <a class="citation" href="#abate-2013-modular-package-manager">[3]</a> in the MISC competition (Mancoosi International Solver Competition <a href="https://www.mancoosi.org/misc/">ref</a>) including but not limited to:</p>
+
+<ul>
+  <li>boolean satisfiability (SAT)</li>
+  <li>Mixed Integer Linear Programming (MILP)</li>
+  <li>Answer Set Programming (ASP)</li>
+  <li>graph constraints</li>
+</ul>
+
+<p>And I think we intend to work on one based on ABI compatability. Many of these can handle upgrade problems encoded as CUDF documents.</p>
+<hr />
+
+<ol class="bibliography"><li><div>
+    <div><span id="abate2012dependency">P. Abate, R. Di Cosmo, R. Treinen, and S. Zacchiroli, “Dependency solving: a separate concern in component evolution management,” <i>Journal of Systems and Software</i>, vol. 85, no. 10, pp. 2228–2240, 2012.</span>
+    <a href="/build-notes/paper-details/abate2012dependency.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/abate2012dependency-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/abate2012dependency.html"></a></li>
+<li><div>
+    <div><span id="abate2020dependency">P. Abate, R. Di Cosmo, G. Gousios, and S. Zacchiroli, “Dependency Solving Is Still Hard, but We Are Getting Better at It,” in <i>2020 IEEE 27th International Conference on Software Analysis, Evolution and Reengineering (SANER)</i>, 2020, pp. 547–551.</span>
+    <a href="/build-notes/paper-details/abate2020dependency.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/abate2020dependency-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/abate2020dependency.html"></a></li>
+<li><div>
+    <div><span id="abate-2013-modular-package-manager">P. Abate, R. Di Cosmo, R. Treinen, and S. Zacchiroli, http://www.sciencedirect.com/science/article/pii/S0950584912001851“A modular package manager architecture”&lt;/a&gt; <i>Information and Software Technology</i>, vol. 55, no. 2, pp. 459–474, 2013.</span>
+    <a href="/build-notes/paper-details/abate-2013-modular-package-manager.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/abate-2013-modular-package-manager-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/abate-2013-modular-package-manager.html"></a></li></ol>
+
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+    </div>
+    <style type="text/css">
+.related-posts{
+  border: 3px dotted #2e87e7;
+  border-radius: 5px;
+  margin: 20px 0;
+  padding: 10px 10px 0 10px;
+}
+.related-posts span{
+  font-size: 130%;
+  font-weight: 500;
+  color: #2e87e7;
+}
+.related-posts ul{
+  margin-top: 5px!important;
+}
+.thi-icon{
+  float: left;
+  line-height: inherit;
+  margin-right: 5px;
+  margin-left: 2px;
+  color: #2e87e7;
+}
+</style>
+
+<div class="related-posts">
+  <i class="material-icons thi-icon">grade</i><span>Related Notes</span>
+  
+  <ul>
+    
+    
+
+    
+    
+      
+    
+  </ul>
+</div>
+
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

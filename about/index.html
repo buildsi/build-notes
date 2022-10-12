@@ -12,7 +12,7 @@
 
   <title>
     
-      BUILD Notes | I want to write it down, and for it to be pretty.
+      Overview | BUILD Notes
     
   </title>
 
@@ -43,7 +43,15 @@
 
   
     
-      <link rel="stylesheet" href="/build-notes/assets/css/index.css">
+      <link rel="stylesheet" href="/build-notes/assets/css/about.css">
+    
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/animate.css">
+    
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/morphext.css">
     
   
 
@@ -53,18 +61,18 @@
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="BUILD Notes" />
+<meta property="og:title" content="Overview" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I want to write it down, and for it to be pretty." />
 <meta property="og:description" content="I want to write it down, and for it to be pretty." />
-<link rel="canonical" href="/build-notes/" />
-<meta property="og:url" content="/build-notes/" />
+<link rel="canonical" href="/build-notes/about/" />
+<meta property="og:url" content="/build-notes/about/" />
 <meta property="og:site_name" content="BUILD Notes" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="BUILD Notes" />
+<meta property="twitter:title" content="Overview" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"I want to write it down, and for it to be pretty.","headline":"BUILD Notes","name":"BUILD Notes","url":"/build-notes/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"I want to write it down, and for it to be pretty.","headline":"Overview","name":"BUILD Notes","url":"/build-notes/about/"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -114,248 +122,21 @@
 <main>
 	<div class="container">
 	  <div id="page-info">
-		  <h2></h2>
+		  <h2>Overview</h2>
 		</div>
 		<div class="row">
-			<div class="row">
+			<p>This proposal aims to reduce the complexity of integration of software packages. Growing number of packages increases the complexity of integrating them in applications. This is a significant problem, which is time consuming and often results in sub-optimal use of software packages, such as continued use of outdated versions because the cost of moving to a new version is too high. Currently, software package compatibility is mostly managed manually by individual projects, even in cases where they share common third-party packages. There are many examples of this at LLNL and externally. This creates a large workload for individual projects and often makes them reliant on old versions, so they cannot take advantage of newer features, performance improvements, bug-fixes, etc. This is especially problematic when packages are changing rapidly, like in the area of data science. This proposal presents four thrust areas to solve this problem:</p>
 
-  <h1>BUILD</h1>
+<ul>
+  <li><strong>Thrust 1</strong> – Develop a formal specification to determine compatibility, focusing on Application Binary Interfaces (ABI) between packages. This includes the development of a tool to programmatically construct and verify compatibility models and a set of use cases from proxy apps that demonstrate mixed language/runtime applications can be built and verified.</li>
+  <li><strong>Thrust 2</strong> – Develop binary analysis tools to determine which packages can be integrated together, even when built through different means (e.g., manually or with a package manager). This requires reverse engineering stripped binaries with no debug information to find entry/exit points, exported data types/structures, other ABI relevant semantics and metadata, and validating equivalence or near equivalence in function behavior.</li>
+  <li><strong>Thrust 3</strong> – Quickly find the right combination of versions to satisfy constraints. This thrust builds on top of verifiable compatibility models and binary analysis. For this area, the team wants to determine if modern solvers can be used to solve full-scale models quickly enough to be practical and what types of encodings and heuristics are necessary to reliably solve this problem.</li>
+  <li><strong>Thrust 4</strong> – Find the optimal configuration that is closest to known and tested versions of the code. They want to leverage the large set of library configurations (~4,000 spack packages) to train a machine learning model to find optimal configurations.</li>
+</ul>
 
-  <div>
-    <form action="/build-notes/search" method="get">
-	<input type="search" name="q"  placeholder="Search for..." autofocus>
-	<input type="submit" value="Search" style="display: none;">
-</form>
+<p>See the <a href="/build-notes/getting-started/">getting-started</a> page for instructions
+on how to write notes or ask for help.</p>
 
-  </div>
-
-  <div><div>
-LLNL is starting a new strategic initiative called BUILD ("Binary Understanding and Integration Logic for Dependencies"). BUILD aims to 
-
-<ol>
-<li>study and formally specify ABI and other aspects of software compatibility </li>
-<li>develop binary analysis techniques to extract compatibility information from arbitrary binaries</li>
-<li>develop SMT-based methods to quickly find compatible-by-construction combinations of dependencies </li>
-<li>to optimize constructed component graphs. </li>
-</ol>
-The BUILD project will leverage and ultimately contribute its techniques to LLNL’s package manager, <a href="https://github.com/spack/spack">Spack</a>. See the [getting started](/build-notes/getting-started/) pages for an overview of how to take notes using this site.
-</div>
-</div>
-
-  <h2>Notes</h2>
-  <hr>
-
-  <h5>Thrusts</h5>
-  <div class="thi-columns">
-    <ul class="tag-post">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust1">
-        <li>
-          Thrust 1: Develop a formal specification to determine compatibility 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust2">
-        <li>
-          Thrust 2: Develop binary analysis tools to determine package integration 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust3">
-        <li>
-          Thrust 3: Quickly find the right combination of versions to satisfy constraints 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust4">
-        <li>
-          Thrust 4: Find the optimal configuration 
-        </li>
-      </a>
-    
-    </ul>
-  </div>
-
-  <h5>Papers</h5>
-  <div class="thi-columns">
-    <ul class="tag-post">
-    
-      <a class="post-title" href="/build-notes/papers/abate+ocaml14-pkg-manager-prefs">
-        <li>
-          Abate+ocaml14 Pkg Manager Prefs 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/abate-2013-modular-package-manager">
-        <li>
-          Abate 2013 Modular Package Manager 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/abate2012dependency">
-        <li>
-          Abate2012dependency 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/abate2020dependency">
-        <li>
-          Abate2020dependency 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/dietrich+msr19">
-        <li>
-          Dietrich+msr19 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/hoste-easybuild-pyhpc-2012">
-        <li>
-          Hoste Easybuild Pyhpc 2012 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/tuckericse07-opium">
-        <li>
-          Tuckericse07 Opium 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/vieiraase02">
-        <li>
-          Vieiraase02 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/wiese2019naming">
-        <li>
-          Wiese2019naming 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/wintersewg20-now-or-never">
-        <li>
-          Wintersewg20 Now Or Never 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/wintersewg20-what-is-abi">
-        <li>
-          Wintersewg20 What Is Abi 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/yurichev2018sat">
-        <li>
-          Yurichev2018sat 
-        </li>
-      </a>
-    
-    </ul>
-  </div>
-
-  <h5>Topics</h5>
-  <div class="thi-columns">
-    <ul class="tag-post">
-    
-      <a class="post-title" href="/build-notes/notes/abidsl">
-        <li>
-          Spack'S Domain Specific Language for ABI 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/containers">
-        <li>
-          Containers Investigation for Build 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/find-mangled-strings">
-        <li>
-          Finding Mangled Strings 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/flow">
-        <li>
-          Package Manager Flow 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/projects">
-        <li>
-          Projects 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/questions">
-        <li>
-          Questions 
-        </li>
-      </a>
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    </ul>
-  </div>
-
-  <h5>Writeups</h5>
-  <div class="thi-columns">
-    <ul class="tag-post">
-    
-      <a class="post-title" href="/build-notes/how-to-write-notes">
-        <li>
-          How to write notes <small class="post-date">27/11/2020</small>
-        </li>
-      </a>
-    
-    </ul>
-  </div>
-
-  <div class="col s12 center-align">
-    <ul class="pagination">
-      <li class="disabled">
-      
-      <a href="#!">
-      
-        <i class="material-icons">chevron_left</i>
-      </a>
-      </li>
-      
-      <li class="active teal">
-        <a href="#!">1</a>
-      
-      </li>
-      
-      <li class="disabled">
-      
-      <a href="#!">
-      
-        <i class="material-icons">chevron_right</i>
-      </a>
-      </li>
-    </ul>
-  </div>
-</div>
 
 		</div>
 	</div>
@@ -448,6 +229,14 @@ The BUILD project will leverage and ultimately contribute its techniques to LLNL
 
 
 
+
+  
+    <script src="/build-notes/assets/js/morphext.min.js"></script>
+  
+
+  
+    <script src="/build-notes/assets/js/about.js"></script>
+  
 
 <script src="/build-notes/assets/js/main.js"></script>
 

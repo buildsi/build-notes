@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Wiese2019naming | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Wiese2019naming" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Naming the Pain in Developing Scientific Software" />
+<meta property="og:description" content="Naming the Pain in Developing Scientific Software" />
+<link rel="canonical" href="/build-notes/papers/wiese2019naming" />
+<meta property="og:url" content="/build-notes/papers/wiese2019naming" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Wiese2019naming" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"Naming the Pain in Developing Scientific Software","headline":"Wiese2019naming","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/papers/wiese2019naming"},"url":"/build-notes/papers/wiese2019naming"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#naming-the-pain-in-developing-scientific-software">Naming the Pain in Developing Scientific Software</a>
+    <ol>
+      <li><a href="#overview">Overview</a>
+        <ol>
+          <li><a href="#who-is-the-scientific-software-developer">Who is the Scientific Software Developer?</a></li>
+          <li><a href="#the-pains">The Pains</a>
+            <ol>
+              <li><a href="#technical-related">Technical Related</a></li>
+              <li><a href="#social-problems">Social Problems</a></li>
+              <li><a href="#scientific-related-problems">Scientific Related Problems</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#datasets">Datasets</a></li>
+    </ol>
+  </li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Wiese2019naming</h3>
+      <span>
+        Updated on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+         <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_papers/wiese2019naming.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <h2 id="naming-the-pain-in-developing-scientific-software">Naming the Pain in Developing Scientific Software</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>The paper <a class="citation" href="#wiese2019naming">[1]</a> strongly reflects the state of research software engineering - a large number of us don’t have official/extensive training in computer science or software engineering, and thus this leads to what the author is calling “pains.” This paper is cool because they attempt to characterize these pains, namely building a taxonomy of 2,110 problems across 1,577 R developers. Areas of pain include:</p>
+
+<ul>
+  <li>technical-related</li>
+  <li>social-related</li>
+  <li>scientific-related</li>
+</ul>
+
+<p>And developing research software is hard because:</p>
+
+<ul>
+  <li>requirements constantly chang</li>
+  <li>RSEs need domain knowledge and programming expertise</li>
+  <li>architectures (e.g., communication) change frequently</li>
+  <li>tooling is often not open source, or not community efforts (and I’d guess everyone re-invents the wheel).</li>
+</ul>
+
+<p>And the primary complaints they found are:</p>
+
+<ul>
+  <li>lack of documentation</li>
+  <li>poor compatability across platforms</li>
+  <li>lack of a formal reward system</li>
+</ul>
+
+<h4 id="who-is-the-scientific-software-developer">Who is the Scientific Software Developer?</h4>
+
+<p>They tried to filter (by asking) to only developers of scientific software.</p>
+
+<ul>
+  <li>Most are male (88%)</li>
+  <li>It’s fairly globally diverse, with most in Europe (49%) and the US (34%)</li>
+  <li>80% are working toward or have a PhD</li>
+  <li>Only 20% call themselves software engineers</li>
+  <li>fields / domains are pretty much everything</li>
+</ul>
+
+<h4 id="the-pains">The Pains</h4>
+
+<h5 id="technical-related">Technical Related</h5>
+
+<p>Technical problems are over 70% of reported issues. Top issues include:</p>
+
+<ul>
+  <li>software requirements and management</li>
+  <li>functional requirements</li>
+  <li>documentation</li>
+  <li>software testing/debugging</li>
+</ul>
+
+<p><img src="/build-notes/assets/img/notes/wiese-technical-problems.png" alt="/build-notes/assets/img/notes/wiese-technical-problems.png" /></p>
+
+<p>and of course you can see the entire breakdown in the figure above!
+They think that this category is high possibly because there are fewer
+respondents with CS backgrounds (3%).</p>
+
+<h5 id="social-problems">Social Problems</h5>
+
+<p>Top social problems include:</p>
+
+<ul>
+  <li>Lack of Time</li>
+  <li>Publicity (e.g., we need journals like JOSS)</li>
+  <li>Emotional aspects (no recognition sucks)</li>
+  <li>Communication and Collaboration (lack of scientific software community)</li>
+  <li>Lack of Support (e.g., smaller user base == less feedback)</li>
+</ul>
+
+<p><img src="/build-notes/assets/img/notes/wiese-social-problems.png" alt="/build-notes/assets/img/notes/wiese-social-problems.png" /></p>
+
+<h5 id="scientific-related-problems">Scientific Related Problems</h5>
+
+<ul>
+  <li>Data handling pains (poor community standards, data quality, management, privacy, sharing)</li>
+  <li>reproducibility (people still don’t care sometimes)</li>
+  <li>scope of software (often unclear)</li>
+  <li>background (mapping between domain and coding skills)</li>
+</ul>
+
+<p><img src="/build-notes/assets/img/notes/wiese-scientific-problems.png" alt="/build-notes/assets/img/notes/wiese-scientific-problems.png" /></p>
+
+<h3 id="solutions">Solutions</h3>
+
+<p>The authors state that solutions aren’t the goal of the paper, but they point out that Software carpentry encourages:</p>
+
+<ul>
+  <li>using version control</li>
+  <li>turning bugs into test cases</li>
+  <li>consistent style/formatting of code</li>
+</ul>
+
+<p>These, however, are mostly technical and don’t address the social / scientific problems
+mentioned previously. The authors say that based on their findings, past work doesn’t properly quantify and then address these “softer” problems, and they anticipate more research to come (see Table 1 at end of paper).</p>
+
+<h3 id="datasets">Datasets</h3>
+
+<ul>
+  <li>The research data is available at <a href="https://github.com/utfpr/NamingThePain">https://github.com/utfpr/NamingThePain</a>.</li>
+</ul>
+
+<hr />
+
+<ol class="bibliography"><li><div>
+    <div><span id="wiese2019naming">I. S. Wiese, I. Polato, and G. Pinto, “Naming the Pain in Developing Scientific Software,” <i>IEEE Software</i>, 2019.</span>
+    <a href="/build-notes/paper-details/wiese2019naming.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/wiese2019naming-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/wiese2019naming.html"></a></li></ol>
+
+
+      <hr> 
+      <ol class="bibliography"></ol>
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+    </div>
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

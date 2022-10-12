@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      Vieiraase02 | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/post.css">
+    
+  
+
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Vieiraase02" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Analyzing Dependencies in Large Component-Based Systems" />
+<meta property="og:description" content="Analyzing Dependencies in Large Component-Based Systems" />
+<link rel="canonical" href="/build-notes/papers/vieiraase02" />
+<meta property="og:url" content="/build-notes/papers/vieiraase02" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T03:40:09+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Vieiraase02" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-12T03:40:09+00:00","datePublished":"2022-10-12T03:40:09+00:00","description":"Analyzing Dependencies in Large Component-Based Systems","headline":"Vieiraase02","mainEntityOfPage":{"@type":"WebPage","@id":"/build-notes/papers/vieiraase02"},"url":"/build-notes/papers/vieiraase02"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<div id="slide-out" class="side-nav fixed">
+  <div>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">buildsi/build-notes</span>
+      <span class="white-text email"><a style="color: #bdbdbd;" href="https://github.com/buildsi/build-notes"></a></span>
+    </div>
+  </div>
+  <div style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </div>
+  <div id="toc-bar">
+    <div class="toc-bar-title">
+      In this post
+    </div>
+    <ol id="toc-sidebar">
+  <li><a href="#analyzing-dependencies-in-large-component-based-systems">Analyzing Dependencies in Large Component-Based Systems</a>
+    <ol>
+      <li><a href="#overview">Overview</a>
+        <ol>
+          <li><a href="#component-based-systems">Component Based Systems</a></li>
+          <li><a href="#overview-of-component-dependencies">Overview of Component Dependencies</a></li>
+          <li><a href="#the-approach-proposed">The Approach Proposed</a></li>
+          <li><a href="#pomsets">pomsets</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+  </div>
+</div>
+
+  
+</header>
+<main>
+  <div class="container">
+    <div id="post-info">
+      <h3>Vieiraase02</h3>
+      <span>
+        Updated on
+        <span style="display: initial;" class="cat-class">12/10/2022</span>
+         <a style="float:right" href="https://github.com/buildsi/build-notes/edit/main/_papers/vieiraase02.md" target="_blank">🗒️ Edit on GitHub</a>
+      </span>
+    </div>
+
+    <div class="divider"></div>
+    <div class="row thi-post">
+      <div class="col s12">
+        <h1 id="analyzing-dependencies-in-large-component-based-systems">Analyzing Dependencies in Large Component-Based Systems</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>The authors <a class="citation" href="#vieira+:ase02">[1]</a> introduce component-based systems as a good practice to develop software,
+but say that enough work hasn’t been done to understand dependency management.
+The authors are suggesting an approach to model dependencies in… XML <strong>scream</strong>
+(looks that paper is from 2002, phew) called CBDM, or the Component Based Dependence Model. 
+I don’t think this model took over, so this might be an example of what not to do.</p>
+
+<h3 id="component-based-systems">Component Based Systems</h3>
+
+<p>Or CBS is a collection od dependencies that rise from some original set of components.
+Logically, tracking components gets harder as you install more things. This is the first
+paper that recognizes two kinds of components - “in house” (stuff you make) and
+“third party” (what others make). The authors suggest third party components are more akin
+to black boxes.</p>
+
+<h3 id="overview-of-component-dependencies">Overview of Component Dependencies</h3>
+
+<p>Some CBS have components “bundled in” but typically they depend on:</p>
+
+<ol>
+  <li>services from other components</li>
+  <li>functionalities from external resources (e.g., middleware or OS)</li>
+</ol>
+
+<p>And also have internal dependencies built in that can impact inputs and outputs.
+The authors seem to be making the argument that because it’s hard to know this set
+of dependencies, they need their XML schema.</p>
+
+<h3 id="the-approach-proposed">The Approach Proposed</h3>
+
+<p>The authors want to create this XML schema to:</p>
+
+<ol>
+  <li>describe the dependencies</li>
+  <li>analyze influence</li>
+</ol>
+
+<p>And it should be flexible enough to:</p>
+
+<ol>
+  <li>be descriptive</li>
+  <li>define things precisely</li>
+  <li>be easy to change when new information is available</li>
+</ol>
+
+<p>and the result is the Component Based Dependence Model (CBDM) which is XML based,
+and broken into two parts: internal and external (hardware, software and services, and causality, provided and required) dependencies. It’s basically a dependency graph of components and services. The process of analyzing dependencies takes the following 3 steps:</p>
+
+<ol>
+  <li>figure out what components are on the system (and configuration)</li>
+  <li>create the CBDM</li>
+  <li>identify component dependencies in the CBS.</li>
+</ol>
+
+<p>They chose XML to be able to query it like a graph, describe pomsets (multi-level, e.g., runtime dependencies), and still express things in text. I just did a Google search and only turned up this paper as a result, so I’m guessing it didn’t stand the test of time.</p>
+
+<h3 id="pomsets">pomsets</h3>
+
+<p>According to the authors, a pomset consists of a sequence of actions in the form of a regex,
+where each action could be:</p>
+
+<ol>
+  <li>describing services not provided by the component</li>
+  <li>actions that the component can provide via some interface</li>
+  <li>actions related to some internal service (not provided by the component)</li>
+</ol>
+
+<p>The authors also state that providing a complete set of metadata (the pomsets) is a limitation because it’s likely arduous (and maybe this is one reason why this approach
+didn’t carry forward). It would be really nice to see an example of this, the description is fairly vague.</p>
+
+<hr />
+
+<ol class="bibliography"><li><div>
+    <div><span id="vieira+:ase02">M. Vieira and D. Richardson, “Analyzing dependencies in large component-based systems,” in <i>Proceedings 17th IEEE International Conference on Automated Software Engineering,</i> 2002, pp. 241–244.</span>
+    <a href="/build-notes/paper-details/vieira+_ase02.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/vieira+ase02-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/vieira+_ase02.html"></a></li></ol>
+
+
+      <hr> 
+      <ol class="bibliography"></ol>
+      </div>
+    </div>
+
+    <div class="tag-list">
+      
+    </div>
+    <form action="/build-notes/search" method="get">
+	<input type="search" name="q"  placeholder="Search for..." autofocus>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+
+  </div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+  
+    <script src="/build-notes/assets/js/post.js"></script>
+  
+
+
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>

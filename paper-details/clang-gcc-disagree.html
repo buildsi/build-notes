@@ -12,7 +12,7 @@
 
   <title>
     
-      BUILD Notes | I want to write it down, and for it to be pretty.
+      clang++/g++ disagree on how template arguments in substitutions are resolved | BUILD Notes
     
   </title>
 
@@ -42,10 +42,6 @@
   
 
   
-    
-      <link rel="stylesheet" href="/build-notes/assets/css/index.css">
-    
-  
 
   <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
@@ -53,18 +49,18 @@
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="BUILD Notes" />
+<meta property="og:title" content="clang++/g++ disagree on how template arguments in substitutions are resolved" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I want to write it down, and for it to be pretty." />
 <meta property="og:description" content="I want to write it down, and for it to be pretty." />
-<link rel="canonical" href="/build-notes/" />
-<meta property="og:url" content="/build-notes/" />
+<link rel="canonical" href="/build-notes/paper-details/clang-gcc-disagree.html" />
+<meta property="og:url" content="/build-notes/paper-details/clang-gcc-disagree.html" />
 <meta property="og:site_name" content="BUILD Notes" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="BUILD Notes" />
+<meta property="twitter:title" content="clang++/g++ disagree on how template arguments in substitutions are resolved" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"I want to write it down, and for it to be pretty.","headline":"BUILD Notes","name":"BUILD Notes","url":"/build-notes/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"I want to write it down, and for it to be pretty.","headline":"clang++/g++ disagree on how template arguments in substitutions are resolved","url":"/build-notes/paper-details/clang-gcc-disagree.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -114,248 +110,51 @@
 <main>
 	<div class="container">
 	  <div id="page-info">
-		  <h2></h2>
+		  <h2>clang++/g++ disagree on how template arguments in substitutions are resolved</h2>
 		</div>
 		<div class="row">
-			<div class="row">
+			<html>
+<head></head>
+<body>
+  <h6>O’Callahan, Robert</h6>
+  <p><a href="https://github.com/LLNL/build-bib/blob/main/papers/clang-gcc-disagree-a.pdf" target="_blank">PDF</a></a>
+  <p></p>
 
-  <h1>BUILD</h1>
+<div class="language-plaintext highlighter-rouge">
+<div class="highlight">
+<pre class="highlight"><code>
+@misc{clang-gcc-disagree,
+  author = {O'Callahan, Robert},
+  date-added = {2020-11-15 23:36:57 -0800},
+  date-modified = {2020-11-15 23:36:57 -0800},
+  howpublished = {https://github.com/itanium-cxx-abi/cxx-abi/issues/68},
+  month = nov,
+  title = {{clang++/g++ disagree on how template arguments in substitutions are resolved}},
+  year = {2018}
+}
 
-  <div>
-    <form action="/build-notes/search" method="get">
-	<input type="search" name="q"  placeholder="Search for..." autofocus>
-	<input type="submit" value="Search" style="display: none;">
-</form>
+</code></pre></div></div>
 
-  </div>
-
-  <div><div>
-LLNL is starting a new strategic initiative called BUILD ("Binary Understanding and Integration Logic for Dependencies"). BUILD aims to 
-
-<ol>
-<li>study and formally specify ABI and other aspects of software compatibility </li>
-<li>develop binary analysis techniques to extract compatibility information from arbitrary binaries</li>
-<li>develop SMT-based methods to quickly find compatible-by-construction combinations of dependencies </li>
-<li>to optimize constructed component graphs. </li>
-</ol>
-The BUILD project will leverage and ultimately contribute its techniques to LLNL’s package manager, <a href="https://github.com/spack/spack">Spack</a>. See the [getting started](/build-notes/getting-started/) pages for an overview of how to take notes using this site.
-</div>
-</div>
-
-  <h2>Notes</h2>
-  <hr>
-
-  <h5>Thrusts</h5>
   <div class="thi-columns">
     <ul class="tag-post">
     
       
-    
       
-    
       
-    
       
-    
       
-    
       
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust1">
-        <li>
-          Thrust 1: Develop a formal specification to determine compatibility 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust2">
-        <li>
-          Thrust 2: Develop binary analysis tools to determine package integration 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust3">
-        <li>
-          Thrust 3: Quickly find the right combination of versions to satisfy constraints 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/thrusts/thrust4">
-        <li>
-          Thrust 4: Find the optimal configuration 
-        </li>
-      </a>
-    
+      
+      
+      
+      
+      
+      
     </ul>
   </div>
 
-  <h5>Papers</h5>
-  <div class="thi-columns">
-    <ul class="tag-post">
-    
-      <a class="post-title" href="/build-notes/papers/abate+ocaml14-pkg-manager-prefs">
-        <li>
-          Abate+ocaml14 Pkg Manager Prefs 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/abate-2013-modular-package-manager">
-        <li>
-          Abate 2013 Modular Package Manager 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/abate2012dependency">
-        <li>
-          Abate2012dependency 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/abate2020dependency">
-        <li>
-          Abate2020dependency 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/dietrich+msr19">
-        <li>
-          Dietrich+msr19 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/hoste-easybuild-pyhpc-2012">
-        <li>
-          Hoste Easybuild Pyhpc 2012 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/tuckericse07-opium">
-        <li>
-          Tuckericse07 Opium 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/vieiraase02">
-        <li>
-          Vieiraase02 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/wiese2019naming">
-        <li>
-          Wiese2019naming 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/wintersewg20-now-or-never">
-        <li>
-          Wintersewg20 Now Or Never 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/wintersewg20-what-is-abi">
-        <li>
-          Wintersewg20 What Is Abi 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/papers/yurichev2018sat">
-        <li>
-          Yurichev2018sat 
-        </li>
-      </a>
-    
-    </ul>
-  </div>
-
-  <h5>Topics</h5>
-  <div class="thi-columns">
-    <ul class="tag-post">
-    
-      <a class="post-title" href="/build-notes/notes/abidsl">
-        <li>
-          Spack'S Domain Specific Language for ABI 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/containers">
-        <li>
-          Containers Investigation for Build 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/find-mangled-strings">
-        <li>
-          Finding Mangled Strings 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/flow">
-        <li>
-          Package Manager Flow 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/projects">
-        <li>
-          Projects 
-        </li>
-      </a>
-    
-      <a class="post-title" href="/build-notes/notes/questions">
-        <li>
-          Questions 
-        </li>
-      </a>
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    </ul>
-  </div>
-
-  <h5>Writeups</h5>
-  <div class="thi-columns">
-    <ul class="tag-post">
-    
-      <a class="post-title" href="/build-notes/how-to-write-notes">
-        <li>
-          How to write notes <small class="post-date">27/11/2020</small>
-        </li>
-      </a>
-    
-    </ul>
-  </div>
-
-  <div class="col s12 center-align">
-    <ul class="pagination">
-      <li class="disabled">
-      
-      <a href="#!">
-      
-        <i class="material-icons">chevron_left</i>
-      </a>
-      </li>
-      
-      <li class="active teal">
-        <a href="#!">1</a>
-      
-      </li>
-      
-      <li class="disabled">
-      
-      <a href="#!">
-      
-        <i class="material-icons">chevron_right</i>
-      </a>
-      </li>
-    </ul>
-  </div>
-</div>
+</body>
+</html>
 
 		</div>
 	</div>

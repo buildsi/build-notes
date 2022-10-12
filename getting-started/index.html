@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <meta name="google-site-verification" content="8zqeFQNuNAWS7ye6oN69hdEeYC_RsDyAlhht79xtAQo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/build-notes/assets/img/banner.png" />
+
+  
+
+  <title>
+    
+      How do I take notes? | BUILD Notes
+    
+  </title>
+
+  
+
+  <!-- page's cover -->
+  
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1234">
+    <meta property="og:image:height" content="592">
+  
+
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/build-notes/assets/img/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build-notes/assets/css/main.css">
+  <link rel="stylesheet" href="/build-notes/assets/css/thi_scss.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap" rel="stylesheet"> 
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/page.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/about.css">
+    
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/animate.css">
+    
+  
+    
+      <link rel="stylesheet" href="/build-notes/assets/css/morphext.css">
+    
+  
+
+  <link rel="stylesheet" href="/build-notes/assets/css/syntax.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/build-notes/feed.xml">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/build-notes/sitemap.xml">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="How do I take notes?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I want to write it down, and for it to be pretty." />
+<meta property="og:description" content="I want to write it down, and for it to be pretty." />
+<link rel="canonical" href="/build-notes/getting-started/" />
+<meta property="og:url" content="/build-notes/getting-started/" />
+<meta property="og:site_name" content="BUILD Notes" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How do I take notes?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"I want to write it down, and for it to be pretty.","headline":"How do I take notes?","url":"/build-notes/getting-started/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+	<header>
+  
+    <div class="container">
+  <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+</div>
+<ul id="slide-out" class="side-nav fixed">
+  <li>
+    <div class="userView thi-userView">
+      <div class="background"></div>
+        <a href="/build-notes/">
+          <img style="display:inherit;" class="circle z-depth-2" src="/build-notes/assets/img/napkins.png">
+        </a>
+      <span style="font-size: larger;" class="white-text name">BUILD Notes</span>
+      <span class="white-text email"><a style="color: white; font-weight:400" href="https://github.com/buildsi/build-notes">buildsi/build-notes</a></span>
+    </div>
+  </li>
+  <li style="padding: 10px;">
+    <form action="/build-notes/search" method="get">
+      <input class="search-sidebar" type="search" name="q"  placeholder="Search something?" autofocus>
+      <input type="submit" value="Search" style="display: none;">
+    </form>
+  </li>
+  <div id="nav-bar">
+    <li><a class="waves-effect" href="/build-notes/">Home</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="/build-notes/papers/">Papers</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="/build-notes/terms/">Terms</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="/build-notes/about/">About</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="/build-notes/references/">References</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="waves-effect" href="/build-notes/getting-started/">Getting Started</a></li>
+  </div>
+</ul>
+
+  
+</header>
+<main>
+	<div class="container">
+	  <div id="page-info">
+		  <h2>How do I take notes?</h2>
+		</div>
+		<div class="row">
+			<h3 id="overview">Overview</h3>
+
+<p>This is a Jekyll template that will make it easy to:</p>
+
+<ol>
+  <li>Add references to <code class="language-plaintext highlighter-rouge">references.bib</code> that link to papers in <a href="https://github.com/llnl/build-bib">build-bib</a>.</li>
+  <li>Create pages with notes and automatically render and cite references on any page.</li>
+  <li>Push to the main branch and trigger a build for GitHub pages</li>
+  <li>Search or otherwise interact with the interface</li>
+</ol>
+
+<p>The organization along with each point above are explained in more detail below, and if you want more instructions for
+overall site configuration, see <a href="https://github.com/vsoch/notes-jekyll/#notes-jekyll">the repository README</a>.</p>
+
+<h4 id="1-organization">1. Organization</h4>
+
+<p>The template is organized to allow for several ways for you to take notes. These are the directories
+that you might be interested in:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span>
+├── _notes
+├── pages
+├── _papers
+├── _posts
+└── _terms
+</code></pre></div></div>
+
+<p>Of the above, everything with an underscore is for notes, and <code class="language-plaintext highlighter-rouge">pages</code> is more appropriate
+for a site page (e.g., this one). Continue reading and see section 3 for how to choose the section
+to take notes in.</p>
+
+<h4 id="2-references">2. References</h4>
+
+<p>If you simply want to interact with the references here, the <code class="language-plaintext highlighter-rouge">references.bib</code> in the base
+of the repository can be linked to the <code class="language-plaintext highlighter-rouge">papers</code> folder and you can open them in your citation
+manager of choice. An example manager tool is <a href="https://bibdesk.sourceforge.io/">BibDesk</a>.
+By default, you should expect the name of the paper pdf to match the name of the citation 
+(and BibDesk will do this automatically for you, this is called “AutoFile”) and it’s
+suggested to do a format like <code class="language-plaintext highlighter-rouge">papers/%f{Cite Key}</code>. You can also just add citations
+and papers manually, it’s up to you!</p>
+
+<h4 id="3-how-to-take-notes">3. How to take notes</h4>
+
+<p>Once you have your papers, you of course want to take notes! The nice thing is that these
+are all in Markdown, and you can cite or insert references almost anywhere. Basically, you have a few options:</p>
+
+<h5 id="papers">Papers</h5>
+
+<p>Specific notes on papers should go under <code class="language-plaintext highlighter-rouge">_papers</code>, with the name of the paper corresponding
+to the key in the BibTex (with <code class="language-plaintext highlighter-rouge">:</code> characters removed!) For each paper, it’s helpful to include
+an overview, sections that you think are appropriate to explain the paper, figures or tables if
+you think they are super important, possibly a list of terms, and even a TLDR for a quick “too long
+didn’t read, give me the gist.” If you want to start with a template or example, it’s easy
+enough to copy the file of another paper.</p>
+
+<h5 id="terms">Terms</h5>
+
+<p>For terms that appear across papers, you can create a markdown file (named by the term, e.g., <code class="language-plaintext highlighter-rouge">cudf.md</code>)
+in the <code class="language-plaintext highlighter-rouge">_terms</code> folder. You can link to it directly anywhere with this snippet:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include term.html key="cudf" %}.
+</code></pre></div></div>
+
+<p>E.g., when I read the many Abate papers I found lots about CUDF, and found it easier
+to use the link above.</p>
+
+<h5 id="topics">Topics</h5>
+
+<p>A topics page can be thought of as a general note, e.g., we have one already for containers,
+and one I called “flow” that talks about general named things in the flow of package management.
+Any concept that isn’t appropriate for a term (and obviously isn’t a paper) can go here.</p>
+
+<h5 id="writeups">Writeups</h5>
+
+<p>For anything that is temporal in nature, or something that might be akin to a more complete writeup,
+this can be put in the <code class="language-plaintext highlighter-rouge">_posts</code> folder and be rendered as a post. Currently we have the “How to write a post”
+page here.</p>
+
+<h5 id="thrusts">Thrusts</h5>
+
+<p>Each thrust has it’s own file in the <a href="https://github.com/buildsi/build-notes/tree/main/_notes/thrusts" target="_blank">thrusts</a> notes folder. These files already exist so you should not need to add anything.</p>
+
+<p>For all of the above, references are generally available, so you can cite anywhere on the page (see following sections).
+I chose this approach because I like writing in Markdown. While we could investigate solutions to run a web server and render a PDF, the simpler approach of using Markdown will likely be more comfortable for users with different
+editor preferences.</p>
+
+<h5 id="citations">Citations</h5>
+
+<p>The simplest thing you might want to do is cite something. For example,
+if I type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% cite metz2011nonrigid %}
+</code></pre></div></div>
+
+<p>If you want to cite a particular set of pages or lines, you can do:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% cite metz2011nonrigid --locator 23-5 %}
+</code></pre></div></div>
+
+<p>And then I can include the entire list of references, usually at the end of the page, as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% bibliography --cited %}
+</code></pre></div></div>
+
+<p>You can remove the <code class="language-plaintext highlighter-rouge">--cited</code> to include all references, regardless of being mentioned or
+not. And then I can easily render the citation <a class="citation" href="#hinsen2019dealing">[1]</a>.
+Or make a citation that references lines (missing reference).
+You should be able to click either of those numbers and be taken to the references at the bottom.</p>
+
+<h5 id="references">References</h5>
+
+<p>In the same spirit as the above, you can print the reference for any particular citation
+as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% reference metz2011nonrigid %}
+</code></pre></div></div>
+
+<p>That renders to the following (and note the class is “citation” if you want to edit the
+style):</p>
+
+<p>(missing reference)</p>
+
+<h5 id="quotes">Quotes</h5>
+
+<p>You might also want to quote text, verbatim. That might look like this, for the same
+paper:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% quote metz2011nonrigid %}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+sed do eiusmod tempor.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing.
+{% endquote %}
+</code></pre></div></div>
+
+<p>And here is the rendered version of that.</p>
+
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,<br />sed do eiusmod tempor.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p><cite><a class="citation" href="#hinsen2019dealing">[1]</a></cite></blockquote>
+
+<ol class="bibliography"><li><div>
+    <div><span id="hinsen2019dealing">K. Hinsen, “Dealing with software collapse,” <i>Computing in Science &amp; Engineering</i>, vol. 21, no. 3, pp. 104–108, 2019.</span>
+    <a href="/build-notes/paper-details/hinsen2019dealing.html">Full details</a> |
+    <a href="https://github.com/LLNL/build-bib/blob/main/papers/hinsen2019dealing-a.pdf" target="_blank">PDF</a>
+    </div>
+</div>
+
+<a class="details" href="/paper-details/hinsen2019dealing.html"></a></li></ol>
+
+<fieldset class="field-set">
+  <legend class="leg-title">Examples</legend>
+  <p>For an example post see the <a href="https://vsoch.github.io/notes-jekyll/registration">Registration</a> example page,
+and the <a href="https://vsoch.github.io/notes-jekyll/how-to-write-notes">How to Write Notes</a> page
+for formatting examples.&lt;/span&gt;</p>
+</fieldset>
+
+<h5 id="links-to-papers">Links to Papers</h5>
+
+<p>When taking notes specific to a paper (e.g., a file in <code class="language-plaintext highlighter-rouge">_papers</code>) it’s common to want to link to another paper.
+For example, I came across CUDF in two places, and wanted to link to the correct section. To do this, I could
+insert an include as follows:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>See {% include paper.html key="abate+ocaml14-pkg-manager-prefs" title="this paper for more on CUDF" id="cudf" %}.
+</code></pre></div></div>
+<p>This would link me directly to <code class="language-plaintext highlighter-rouge">/build-notes/papers/abate+ocaml14-pkg-manager-prefs#cudf</code>, with text for the link as
+I specified. The only required attribute is the key, however, so I could just do this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>See {% include paper.html key="abate+ocaml14-pkg-manager-prefs" %}.
+</code></pre></div></div>
+
+<p>And it would link to the top of the page with text <code class="language-plaintext highlighter-rouge">[ref]</code>.</p>
+
+<h5 id="links-to-terms">Links to Terms</h5>
+
+<p>Since terms can appear across papers, it’s helpful to put them into their own organization.
+For this purpose, we have a <code class="language-plaintext highlighter-rouge">_terms</code> folder where you can create a term file, and link to as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include term.html key="cudf" %}.
+</code></pre></div></div>
+
+<p>The above would link to the term page “cudf” in the file <code class="language-plaintext highlighter-rouge">_terms/cudf.md</code>.</p>
+
+<h4 id="4-metadata-for-notes">4. Metadata for notes</h4>
+
+<p>Regardless of where you create the Markdown file, you can follow a general pattern
+of defining metadata to help you to add functionality like equation formatting, or metadata like
+tags and categories. Here is an example template that demonstrates some of these 
+fields:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">How to write notes</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">about</span><span class="pi">]</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">jekyll</span><span class="pi">]</span>
+<span class="na">datacamp</span><span class="pi">:</span> <span class="m">1</span>
+<span class="na">maths</span><span class="pi">:</span> <span class="m">1</span>
+<span class="na">toc</span><span class="pi">:</span> <span class="m">1</span>
+<span class="nn">---</span>
+
+<span class="pi">{</span><span class="err">%</span> <span class="nv">cite keyToReference %</span><span class="pi">}</span>
+
+<span class="pi">{</span><span class="err">%</span> <span class="nv">quote metz2011nonrigid %</span><span class="pi">}</span>
+<span class="s">This is an example of a cited quote.</span>
+<span class="s">Lorem ipsum dolor sit amet, consectetur adipisicing elit,</span>
+<span class="s">sed do eiusmod tempor.</span>
+
+<span class="s">Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
+<span class="pi">{</span><span class="err">%</span> <span class="nv">endquote %</span><span class="pi">}</span>
+
+<span class="s">&lt;hr&gt;</span>
+
+<span class="pi">{</span><span class="err">%</span> <span class="nv">bibliography --cited %</span><span class="pi">}</span>
+
+</code></pre></div></div>
+
+<p>The above makes a few citations (including a post) and has references at the bottom.</p>
+
+<h5 id="tags-and-categories">Tags and Categories</h5>
+
+<p>Tags are a strategy for grouping notes. For example, I might tag notes with authors, or other relevant
+metadata.  You can add a list of tags to any post front end matter as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">vsoch</span><span class="pi">,</span><span class="nv">manbat</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>You don’t need to define tags a-priori - they will render regardless. For categories,
+you’ll need to edit the <code class="language-plaintext highlighter-rouge">_data/categories.yml</code> file to add names and slugs. A category
+is more appropriate for grouping information. For example, for the dummy papers here,
+I might have a category of registration. You can also define categories in front end matter:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">categories</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">registration</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>A single string should work as well.</p>
+
+<h2 id="thanks">Thanks</h2>
+
+<p>This template would not be possible without <a href="https://github.com/vsoch/notes-jekyll">notes-jekyll</a>, 
+<a href="https://github.com/dinhanhthi/notetheme">notetheme</a> and the
+<a href="https://github.com/inukshuk/jekyll-scholar">jekyll-scholar</a> plugin for citation management.
+Thank you!</p>
+
+<h2 id="support">Support</h2>
+
+<p>If you have any questions or want to request a feature, please don’t hesitate
+to <a href="https://github.com/buildsi/build-notes/issues">open an issue</a>.</p>
+
+		</div>
+	</div>
+</main>
+
+	<script src="/build-notes/assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+      //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+      offset_opacity = 1200,
+      //duration of the top scrolling animation (in ms)
+      scroll_top_duration = 700,
+      //grab the "back to top" link
+      $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+      ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+      // if( $(this).scrollTop() > offset_opacity ) { 
+      //  $back_to_top.addClass('cd-fade-out');
+      // }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+      event.preventDefault();
+      $('body,html').animate({
+        scrollTop: 0 ,
+        }, scroll_top_duration
+      );
+    });
+
+  });
+</script>
+<style type="text/css">
+.cd-top {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #bbb url(/build-notes/assets/img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+</style>
+
+<a href="#0" class="cd-top">Top</a>
+
+	<footer class="page-footer teal">
+  <div class="footer-copyright">
+    <div class="container text-white">
+          <a class="waves-effect" href="/build-notes/tags">Tags</a> | <a class="waves-effect" href="/build-notes/categories">Categories</a> | <a class="waves-effect" href="https://github.com/buildsi/build-notes">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+
+
+  
+    <script src="/build-notes/assets/js/morphext.min.js"></script>
+  
+
+  
+    <script src="/build-notes/assets/js/about.js"></script>
+  
+
+<script src="/build-notes/assets/js/main.js"></script>
+
+</body>
+</html>
